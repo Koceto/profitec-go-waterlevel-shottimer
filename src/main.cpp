@@ -33,9 +33,9 @@ float acc_xyz[IMU_N_SAMPLES][3], acc_mean_xyz[3], acc_std_xyz[3];
 
 
 /**
- * Checks for vibrations by reading samples from the accelerometer, 
+ * Checks for vibrations by reading samples from the accelerometer,
  * calculating the standard deviation of these samples and comparing it
- * to a threshold. 
+ * to a threshold.
  */
 bool checkVibration() {
   // Read Sensor IMU_N_SAMPLES times
@@ -120,7 +120,7 @@ void timerRoutine(long tStart) {
 void levelRoutine(float transitionTime) {
   // Try to get fill level
   targetPerc = LevelSensor::getFillPercentage();
-  
+
   // Choose ring color based on percentage
   if(targetPerc > LEVEL_BAD_PERC) {
     currRingColor = RING_COLOR_OK;
@@ -168,7 +168,7 @@ void systemWake() {
   currPerc = 0;
   isAwake = true;
   levelRoutine(TRANSITION_TIME_LONG_MS);
-  
+
 }
 
 
@@ -217,7 +217,6 @@ void setup() {
 }
 
 void loop() {
-
     isVibrating = checkVibration();
     if(isVibrating && !isVibratingPrev) tLastVibration = millis();
 
@@ -234,7 +233,7 @@ void loop() {
         // Vibration stopped, go back to show fill level
         levelRoutine(TRANSITION_TIME_SHORT_MS);
       }
-      
+
     } else if(isAwake && ((millis() - tLastVibration) > SLEEP_TIMEOUT_MS)) {
       // Sleep due to timeout
       systemSleep();
