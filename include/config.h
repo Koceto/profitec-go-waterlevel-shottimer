@@ -9,7 +9,7 @@
 // The sensor sticks around ~2cm into the tank
 #define LEVEL_MAX_DIST_MM 160
 // DF-A02YYUW sensor has a blind distance of 3cm = 30mm
-#define LEVEL_MIN_DIST_MM 30
+#define LEVEL_MIN_DIST_MM 35
 // Number of times to try reading a value from the sensor
 #define LEVEL_N_RETRY 50
 // Delay between two consecutive read attempts
