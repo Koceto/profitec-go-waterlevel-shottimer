@@ -262,7 +262,7 @@ void loop()
     // Sleep due to timeout
     systemSleep();
   }
-  else
+  else if (isAwake)
   {
     levelRoutine(TRANSITION_TIME_LONG_MS);
   }
