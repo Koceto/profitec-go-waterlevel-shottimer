@@ -7,11 +7,11 @@
 // Profitec Go water reservoir is ~25cm deep
 // The intake for the pump sticks out about 2cm
 // The sensor sticks around ~2cm into the tank
-#define LEVEL_MAX_DIST_MM 170
+#define LEVEL_MAX_DIST_MM 160
 // DF-A02YYUW sensor has a blind distance of 3cm = 30mm
 #define LEVEL_MIN_DIST_MM 30
 // Number of times to try reading a value from the sensor
-#define LEVEL_N_RETRY 10
+#define LEVEL_N_RETRY 50
 // Delay between two consecutive read attempts
 #define LEVEL_READ_DELAY_MS 10
 // Percentage value below which the ring changes color from OK to BAD
@@ -34,14 +34,12 @@
 #define ENABLE_TIMER true
 // How much milliseconds one increment of the counter needs
 // For a precise shot time measurement, 1000ms should be used for a full second
-// My Profitec GO seems to count a bit faster than 1000ms
-#define TIMER_INCREMENT_MS 975
+#define TIMER_INCREMENT_MS 1000
 // The timer is started when the system is awake and a vibration is detected
 // The trigger delay defines how many milliseconds the system has to vibrate
 // while being awake until the timer is activated. This prevents the timer
 // from starting when e.g. the portafilter is removed/inserted
 #define TIMER_TRIGGER_DELAY_MS 2000
-
 
 // *******************************
 //         Counter settings
@@ -80,9 +78,9 @@
 //       Animation settings
 // *******************************
 // Target frame time for ring animation in milliseconds
-#define FRAME_TIME_MS 20
+#define FRAME_TIME_MS 50
 // Animation time for ring-indicator when system wakes up
-#define TRANSITION_TIME_LONG_MS 3000
+#define TRANSITION_TIME_LONG_MS 2000
 // Animation time for ring-indicator after timer ends
 #define TRANSITION_TIME_SHORT_MS 1500
 
@@ -100,8 +98,6 @@
 // Time after which the display goes dark when no vibration was detected
 #define SLEEP_TIMEOUT_MS 60000
 // Delay between dimming steps. Dimming is performed from 100 to 0 in decrements of 1.
-#define DIM_STEP_DELAY_MS 1
-
-
+#define DIM_STEP_DELAY_MS 10
 
 #endif
