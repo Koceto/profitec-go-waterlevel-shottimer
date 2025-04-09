@@ -257,14 +257,14 @@ void loop()
       levelRoutine(TRANSITION_TIME_SHORT_MS);
     }
   }
+  else if (isAwake)
+  {
+    levelRoutine(TRANSITION_TIME_LONG_MS);
+  }
   else if (isAwake && ((millis() - tLastVibration) > SLEEP_TIMEOUT_MS))
   {
     // Sleep due to timeout
     systemSleep();
-  }
-  else if (isAwake)
-  {
-    levelRoutine(TRANSITION_TIME_LONG_MS);
   }
 
   isVibratingPrev = isVibrating;

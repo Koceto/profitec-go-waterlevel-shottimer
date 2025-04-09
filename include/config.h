@@ -7,11 +7,11 @@
 // Profitec Go water reservoir is ~25cm deep
 // The intake for the pump sticks out about 2cm
 // The sensor sticks around ~2cm into the tank
-#define LEVEL_MAX_DIST_MM 160
+#define LEVEL_MAX_DIST_MM 180
 // DF-A02YYUW sensor has a blind distance of 3cm = 30mm
 #define LEVEL_MIN_DIST_MM 35
 // Number of times to try reading a value from the sensor
-#define LEVEL_N_RETRY 50
+#define LEVEL_N_RETRY 25
 // Delay between two consecutive read attempts
 #define LEVEL_READ_DELAY_MS 10
 // Percentage value below which the ring changes color from OK to BAD
