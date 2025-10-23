@@ -84,8 +84,9 @@ namespace LevelSensor
             distance = LEVEL_MIN_DIST_MM;
           }
 
-          // Apply deviation filter if we have at least one valid reading
-          if (valid_readings > 0)
+          // Apply deviation filter if we have at least 2 valid readings
+          // This ensures the first reading isn't an outlier that causes valid readings to be rejected
+          if (valid_readings >= 2)
           {
             // Calculate current average
             float sum = 0;
