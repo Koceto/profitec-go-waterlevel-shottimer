@@ -100,6 +100,8 @@
 // Time after which the display goes dark when no vibration was detected
 #define SLEEP_TIMEOUT_MS 60000
 // Delay between dimming steps. Dimming is performed from 100 to 0 in decrements of 1.
-#define DIM_STEP_DELAY_MS 10
+#define DIM_STEP_DELAY_MS 5
+// Brightness of the display when idle
+#define IDLE_BRIGHTNESS 5
 
 #endif

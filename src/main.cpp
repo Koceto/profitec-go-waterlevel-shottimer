@@ -12,6 +12,7 @@
 #include <levelsensor.h>
 #include <statusindicator.h>
 #include <config.h>
+#include "../icons/taparr.h"
 
 // UI elements
 Counter counter;
@@ -183,6 +184,9 @@ void levelRoutine(float transitionTime)
  */
 void systemWake()
 {
+  // Clear the display (removes tap icon)
+  Display::clear(BLACK);
+
   // Reset level
   currPerc = 0;
   isAwake = true;
@@ -196,7 +200,7 @@ void systemWake()
 void systemSleep()
 {
   // Gradually dim display
-  for (int i = 99; i > -1; i--)
+  for (int i = 99; i >= IDLE_BRIGHTNESS; i--)
   {
     Display::setBrightness(i);
     sleep_ms(DIM_STEP_DELAY_MS);
@@ -209,6 +213,10 @@ void systemSleep()
 
   // Wipe display
   Display::clear(BLACK);
+
+  // Draw tap icon centered on screen (150x150 scaled to 25% = 37x37)
+  // Position: x = (240 - 37) / 2 = 101, y = (240 - 37) / 2 = 101
+  Graphics::drawBitmap(101, 101, taparr.width, taparr.height, taparr.pixel_data, taparr.bytes_per_pixel, 4);
 
   isAwake = false;
 }
