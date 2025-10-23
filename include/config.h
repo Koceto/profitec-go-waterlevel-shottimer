@@ -16,6 +16,8 @@
 #define LEVEL_READ_DELAY_MS 10
 // Percentage value below which the ring changes color from OK to BAD
 #define LEVEL_BAD_PERC 25
+// Define maximum allowed deviation (in mm) - adjust this value as needed
+#define MAX_DEVIATION_MM 10
 
 // *******************************
 //       IMU sensor settings
@@ -31,7 +33,7 @@
 //         Timer settings
 // *******************************
 // If you don't need the timer, you can disable it.
-#define ENABLE_TIMER true
+#define ENABLE_TIMER false
 // How much milliseconds one increment of the counter needs
 // For a precise shot time measurement, 1000ms should be used for a full second
 #define TIMER_INCREMENT_MS 1000

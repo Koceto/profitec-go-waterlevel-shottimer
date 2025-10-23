@@ -84,6 +84,25 @@ namespace LevelSensor
             distance = LEVEL_MIN_DIST_MM;
           }
 
+          // Apply deviation filter if we have at least one valid reading
+          if (valid_readings > 0)
+          {
+            // Calculate current average
+            float sum = 0;
+            for (uint16_t j = 0; j < valid_readings; j++)
+            {
+              sum += distances[j];
+            }
+            float avg = sum / valid_readings;
+
+            // Check if current reading deviates too much from average
+            if (abs(distance - avg) > MAX_DEVIATION_MM)
+            {
+              // Skip this reading as it's an outlier
+              continue;
+            }
+          }
+
           // Store the valid reading
           distances[valid_readings++] = distance;
         }
