@@ -97,8 +97,8 @@
 // Top:         0
 // Bottom:      180
 #define ROTATION 270
-// Time after which the display goes dark when no vibration was detected
-#define SLEEP_TIMEOUT_MS 60000
+// Time after which the display goes dark when no vibration was detected in ms (1 min = 1 * 60 * 1000)
+#define SLEEP_TIMEOUT_MS 300000
 // Delay between dimming steps. Dimming is performed from 100 to 0 in decrements of 1.
 #define DIM_STEP_DELAY_MS 5
 // Brightness of the display when idle
