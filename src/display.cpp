@@ -407,6 +407,8 @@ namespace Display {
         sendData16Bit(color);
     };
 
+    static uint8_t currentBrightness = 0;
+
     void setBrightness(uint8_t brightness) {
         // Clip brightness if necessary
         if(brightness > 100) {
@@ -416,6 +418,11 @@ namespace Display {
 
         // Set PWM
         pwm_set_chan_level(slice_num, PWM_CHAN_B, brightness);
+        currentBrightness = brightness;
+    };
+
+    uint8_t getBrightness() {
+        return currentBrightness;
     };
 
 }

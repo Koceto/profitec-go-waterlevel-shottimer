@@ -112,6 +112,11 @@ namespace Display {
     void setBrightness(uint8_t brightness);
 
     /**
+     * Returns the most recently set brightness value.
+     */
+    uint8_t getBrightness();
+
+    /**
      * Clears the display with the given color.
      */
     void clear(uint16_t color);

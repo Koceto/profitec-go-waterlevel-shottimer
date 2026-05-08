@@ -10,7 +10,7 @@
 // So at 25cm - 2cm - 2cm = 21cm = 210mm, the pump starts sucking air (0% fill level)
 #define LEVEL_MAX_DIST_MM 340
 // DF-A02YYUW sensor has a blind distance of 3cm = 30mm
-#define LEVEL_MIN_DIST_MM 30
+#define LEVEL_MIN_DIST_MM 100
 // Number of times to try reading a value from the sensor
 #define LEVEL_N_RETRY 10
 // Delay between two consecutive read attempts

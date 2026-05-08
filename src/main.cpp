@@ -33,9 +33,9 @@ float acc_xyz[IMU_N_SAMPLES][3], acc_mean_xyz[3], acc_std_xyz[3];
 
 
 /**
- * Checks for vibrations by reading samples from the accelerometer, 
+ * Checks for vibrations by reading samples from the accelerometer,
  * calculating the standard deviation of these samples and comparing it
- * to a threshold. 
+ * to a threshold.
  */
 bool checkVibration() {
   // Read Sensor IMU_N_SAMPLES times
@@ -120,7 +120,7 @@ void timerRoutine(long tStart) {
 void levelRoutine(float transitionTime) {
   // Try to get fill level
   targetPerc = LevelSensor::getFillPercentage();
-  
+
   // Choose ring color based on percentage
   if(targetPerc > LEVEL_BAD_PERC) {
     currRingColor = RING_COLOR_OK;
@@ -139,8 +139,8 @@ void levelRoutine(float transitionTime) {
     ring.updatePrec(100, currRingColor);
   }
 
-  // Gradually wakeup display
-  for(int i=0; i < 100; i++) {
+  // Gradually wakeup display, starting from current brightness
+  for(int i=Display::getBrightness(); i < 100; i++) {
     Display::setBrightness(i);
     sleep_ms(DIM_STEP_DELAY_MS);
   }
@@ -168,7 +168,7 @@ void systemWake() {
   currPerc = 0;
   isAwake = true;
   levelRoutine(TRANSITION_TIME_LONG_MS);
-  
+
 }
 
 
@@ -224,20 +224,21 @@ void loop() {
     if(!isAwake && isVibrating) {
       // System is sleeping and vibrating
       systemWake();
-    } else if(isVibrating) {
+    } else if(isAwake && isVibrating && ENABLE_TIMER) {
       // System is awake and vibrating
       // Wait for timer trigger delay
       sleep_ms(TIMER_TRIGGER_DELAY_MS);
       // Start timer if enabled and still vibrating
-      if(ENABLE_TIMER && checkVibration()) {
+      if(checkVibration()) {
         timerRoutine(tLastVibration);
         // Vibration stopped, go back to show fill level
         levelRoutine(TRANSITION_TIME_SHORT_MS);
       }
-      
     } else if(isAwake && ((millis() - tLastVibration) > SLEEP_TIMEOUT_MS)) {
       // Sleep due to timeout
       systemSleep();
+    } else if (isAwake) {
+      levelRoutine(TRANSITION_TIME_SHORT_MS);
     }
 
     isVibratingPrev = isVibrating;
