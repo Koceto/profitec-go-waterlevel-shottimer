@@ -10,10 +10,10 @@
 #define ARC_DISTANCE_RES 0.7
 
 /**
- *
+ * 
  * Graphics namespace includes drawing utilities to draw circles, arcs and characters
  * by drawing individual pixels
- *
+ * 
  */
 namespace Graphics {
     /**
@@ -27,7 +27,7 @@ namespace Graphics {
     /**
      * Draws a full circle centered around (xCenter, yCenter) with given radius and color.
      */
-    void drawFullCircle(uint8_t xCenter, uint8_t yCenter,
+    void drawFullCircle(uint8_t xCenter, uint8_t yCenter, 
                     uint8_t radius, uint16_t color);
 
     /**
@@ -44,30 +44,25 @@ namespace Graphics {
      * Draws the given character c with lower left corner (x, y) in the given color.
      * The font, glyph and bitmap specify the pixel table of the character.
      */
-    void drawChar(uint8_t x, uint8_t y, unsigned char c, uint16_t color,
+    void drawChar(uint8_t x, uint8_t y, unsigned char c, uint16_t color, 
                 const GFXfont *font, const GFXglyph *glyph, const uint8_t *bitmap);
 
     /**
      * Draws a character based on its glyphIndex with lower left corner (x, y) in the given color.
      * The font, glyph and bitmap specify the pixel table of the character.
      */
-    void drawCharByIndex(uint8_t x, uint8_t y, uint8_t glyphIndex, uint16_t color,
+    void drawCharByIndex(uint8_t x, uint8_t y, uint8_t glyphIndex, uint16_t color, 
                 const GFXglyph *glyph, const uint8_t *bitmap);
-
-    /**
-     * Draws a bitmap image with upper left corner at (x, y).
-     * The bitmap should be in RGBA format (4 bytes per pixel: R, G, B, A).
-     * Scale: 1 = 100%, 2 = 50%, 3 = 33%, etc.
-     */
-    void drawBitmap(uint8_t x, uint8_t y, uint8_t width, uint8_t height, const uint8_t *bitmap, uint8_t bytes_per_pixel, uint8_t scale = 1);
 }
+
+
 /**
- *
- * The following functions contain source-code from the AdafruitGFX library,
+ * 
+ * The following functions contain source-code from the AdafruitGFX library, 
  * whose license is included at the bottom of this file.
  *      - Graphics::drawChar
  *      - Graphics::drawCharByIndex
- *
+ * 
  Software License Agreement (BSD License)
 
 Copyright (c) 2012 Adafruit Industries.  All rights reserved.
@@ -92,7 +87,7 @@ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
 CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
- *
+ * 
  */
 
 #endif

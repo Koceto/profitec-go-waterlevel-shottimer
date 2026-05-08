@@ -7,17 +7,16 @@
 // Profitec Go water reservoir is ~25cm deep
 // The intake for the pump sticks out about 2cm
 // The sensor sticks around ~2cm into the tank
-#define LEVEL_MAX_DIST_MM 160
+// So at 25cm - 2cm - 2cm = 21cm = 210mm, the pump starts sucking air (0% fill level)
+#define LEVEL_MAX_DIST_MM 340
 // DF-A02YYUW sensor has a blind distance of 3cm = 30mm
-#define LEVEL_MIN_DIST_MM 35
+#define LEVEL_MIN_DIST_MM 30
 // Number of times to try reading a value from the sensor
-#define LEVEL_N_RETRY 25
+#define LEVEL_N_RETRY 10
 // Delay between two consecutive read attempts
 #define LEVEL_READ_DELAY_MS 10
 // Percentage value below which the ring changes color from OK to BAD
 #define LEVEL_BAD_PERC 25
-// Define maximum allowed deviation (in mm) - adjust this value as needed
-#define MAX_DEVIATION_MM 10
 
 // *******************************
 //       IMU sensor settings
@@ -36,12 +35,14 @@
 #define ENABLE_TIMER false
 // How much milliseconds one increment of the counter needs
 // For a precise shot time measurement, 1000ms should be used for a full second
-#define TIMER_INCREMENT_MS 1000
+// My Profitec GO seems to count a bit faster than 1000ms
+#define TIMER_INCREMENT_MS 975
 // The timer is started when the system is awake and a vibration is detected
 // The trigger delay defines how many milliseconds the system has to vibrate
 // while being awake until the timer is activated. This prevents the timer
 // from starting when e.g. the portafilter is removed/inserted
 #define TIMER_TRIGGER_DELAY_MS 2000
+
 
 // *******************************
 //         Counter settings
@@ -80,9 +81,9 @@
 //       Animation settings
 // *******************************
 // Target frame time for ring animation in milliseconds
-#define FRAME_TIME_MS 50
+#define FRAME_TIME_MS 20
 // Animation time for ring-indicator when system wakes up
-#define TRANSITION_TIME_LONG_MS 2000
+#define TRANSITION_TIME_LONG_MS 3000
 // Animation time for ring-indicator after timer ends
 #define TRANSITION_TIME_SHORT_MS 1500
 
@@ -97,11 +98,11 @@
 // Top:         0
 // Bottom:      180
 #define ROTATION 270
-// Time after which the display goes dark when no vibration was detected in ms (1 min = 1 * 60 * 1000)
-#define SLEEP_TIMEOUT_MS 300000
+// Time after which the display goes dark when no vibration was detected
+#define SLEEP_TIMEOUT_MS 60000
 // Delay between dimming steps. Dimming is performed from 100 to 0 in decrements of 1.
-#define DIM_STEP_DELAY_MS 5
-// Brightness of the display when idle
-#define IDLE_BRIGHTNESS 5
+#define DIM_STEP_DELAY_MS 1
+
+
 
 #endif

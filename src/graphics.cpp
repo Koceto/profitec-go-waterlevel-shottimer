@@ -40,7 +40,7 @@ namespace Graphics {
 
             // Reset current radiants
             float radCur = radStart;
-
+            
             while(radCur < radEnd) {
 
                 int x = xCenter + sinf(radCur)*radiusCur;
@@ -83,7 +83,7 @@ namespace Graphics {
         // Position of circle at end
         int x_end = xCenter + sinf(radEnd)*radius;
         int y_end = yCenter + cosf(radEnd)*radius;
-
+        
         // Draw circle at arc start for rounded corners
         drawFullCircle(x_start, y_start, width/2, color);
         // Draw actual arc
@@ -92,14 +92,14 @@ namespace Graphics {
         drawFullCircle(x_end, y_end, width/2, color);
     }
 
-    void drawChar(uint8_t x, uint8_t y, unsigned char c, uint16_t color,
+    void drawChar(uint8_t x, uint8_t y, unsigned char c, uint16_t color, 
                 const GFXfont *font, const GFXglyph *glyph, const uint8_t *bitmap) {
         // Determine character glyph index and call drawbyindex function
         c -= (uint8_t)(font->first);
         drawCharByIndex(x, y, c, color, glyph, bitmap);
     }
 
-    void drawCharByIndex(uint8_t x, uint8_t y, uint8_t glyphIndex, uint16_t color,
+    void drawCharByIndex(uint8_t x, uint8_t y, uint8_t glyphIndex, uint16_t color, 
                 const GFXglyph *glyph, const uint8_t *bitmap) {
 
         // Get drawing parameters for glyph
@@ -121,43 +121,6 @@ namespace Graphics {
                     Display::setPixel(x + xo + xx, y + yo + yy, color);
                 }
                 bits <<= 1;
-            }
-        }
-    }
-
-    void drawBitmap(uint8_t x, uint8_t y, uint8_t width, uint8_t height, const uint8_t *bitmap, uint8_t bytes_per_pixel, uint8_t scale) {
-        // Loop through each pixel in the bitmap
-        // Bitmap format: 3 or 4 bytes per pixel (RGB or RGBA)
-        // Scale: sample every Nth pixel (1=100%, 2=50%, 3=33%, etc)
-        for (uint8_t row = 0; row < height; row += scale) {
-            for (uint8_t col = 0; col < width; col += scale) {
-                // Calculate index in bitmap array
-                uint32_t index = (row * width + col) * bytes_per_pixel;
-
-                // Read RGB values (first 3 bytes)
-                uint8_t r = bitmap[index];
-                uint8_t g = bitmap[index + 1];
-                uint8_t b = bitmap[index + 2];
-
-                // If RGBA format, check alpha channel (4th byte)
-                if (bytes_per_pixel == 4) {
-                    uint8_t a = bitmap[index + 3];
-                    // Skip fully transparent pixels
-                    if (a == 0) {
-                        continue;
-                    }
-                }
-
-                // Skip black pixels (treat as transparent background)
-                if (r == 0 && g == 0 && b == 0) {
-                    continue;
-                }
-
-                // Any non-black pixel is part of the icon - draw it as white
-                uint16_t color = 0xFFFF; // White in RGB565
-
-                // Draw the pixel (scaled position)
-                Display::setPixel(x + (col / scale), y + (row / scale), color);
             }
         }
     }
